@@ -1,118 +1,104 @@
 # Google Merchandise Store Customer Purchase Behavior Prediction
 
-# Introduction
-## Understanding customer purchase behavior is highly useful for strategic planning and decision-making processes that lead to the company’s future success and growth.
 
-## This project is to use machine learning models to determine if each customer visiting Google merchandise store is going to make a purchase or not.
+## Introduction
+Understanding customer purchase behavior is highly useful for strategic planning and decision-making processes that lead to the company’s future success and growth.
 
-
-# Data Overview
-### - Total of 0.9 million visits from August,2016 to July,2017
-### - 50 different features
-### - Main feature categories:
-#### - Device feature: browser, operating system, isMobile, etc.
-#### - Source feature: channel, medium, referral path, etc
-#### - Geography feature: city, country, region, continent, etc
-#### - Behavior feature: visits, hits, pageviews, bounces, visitStartTime etc
-#### - Transaction feature: transaction revenue
+This project is to use machine learning models to determine if each customer visiting Google merchandise store is going to make a purchase or not.
 
 
-<img src=‘figures/test.png’/>
+## Data Overview
+- Total of 0.9 million visits from 2016-08 to 2017-07
+- Total of 50 different features
+- Main feature categories:
+  1) Device feature: browser, operating system, isMobile, etc.
+  2) Source feature: channel, medium, referral path, etc
+  3) Geography feature: city, country, region, continent, etc
+  4) Behavior feature: visits, hits, pageviews, bounces, visitStartTime etc
+  5) Transaction feature: transaction revenue
 
 
-# Methodology
+## Data Preprocessing
+### Data Cleaning
 
-## To predict which prospects are ready to make their first purchase, a likelihood to buy model evaluates non-transaction customer data, such as how many times a customer clicked on an email or how the customer interacts with your website. These models can also take into account certain demographic data.
-
-## For example, in consumer marketing they may compare gender, age, and zip code to other likely buyers. In business marketing, relevant demographics may include industry, job title, and geography.
-
-# Data Preprocessing
-## Data Cleaning
-
-## - Handle Missing Data Summary
+Here is how the missing data summary look like before cleaning.
 
 ![](figures/before_data_clean.png)
 
+Around 10% of the data is missing. After looking at the features with missing data more closely, most of them use na to represent 0. The best simplified method is to replace the missing values for those features (bounces, transaction revenue, isTureDirect) with 0.
 
+Notice there are some unnecessary features in our data set, it is optimal to drop those unnecessary features and keep only the useful ones for our experiment.
 
+Below graph shows how clean our data is.
 
-Around 10% of the data is missing. After looking at the features with missing data more closely, most of them use na to represent 0. Let us replace the missing values for those features (bounces, transaction revenue, isTureDirect) with 0.
+![](figures/after_data_clean.png)
 
-drop unnecessary features and keep only the useful ones for our experiment.
-
-<img src=‘figures/after_data_clean.png’/>
-
-## Data Transformation
-## - Categorize feature -- Browser, Operating System, Source
-## - Encode categorical feature columns -- Channel Grouping, Device Category, Continent, Browser Grouping, Operating System Grouping, Source Grouping
+### Data Transformation
+- Categorize below features:
+Browser, Operating System, Source
+- Encode categorical below features:
+Channel Grouping, Device Category, Continent, Browser Grouping, Operating System Grouping, Source Grouping
 
 
 # Exploratory Data Analysis
-## EDA is statisticians way of story telling where you explore data, find patterns and tells insights.
+EDA is statisticians way of story telling where you explore data, find patterns and tells insights.
 
-## - Channel Distribution
-<img src=‘figures/channel_dist.png’/>
+## Channel Distribution
+![](figures/channel_dist.png)
 
-## - Browser Distribution
-<img src=‘figures/browser_dist.png’/>
+## Browser Distribution
+![](figures/browser_dist.png)
 
-## - Device Distribution
-<img src=‘figures/browser_dist.png’/>
+## Device Distribution
+![](figures/device_dist.png)
 
-## - Operating System Distribution
-<img src=‘figures/operatingSystem_dist.png’/>
+## Operating System Distribution
+![](figures/operatingSystem_dist.png)
 
-## - Continent Distribution
-<img src=‘figures/continent_dist.png’/>
+## Continent Distribution
+![](figures/continent_dist.png)
 
-## - Medium Distribution
-<img src=‘figures/medium_dist.png’/>
+## Medium Distribution
+![](figures/medium_dist.png)
 
 
 # Machine Learning Modeling
 
 ## Feature Selection
 
-## - Pairplot Visulization
+### Pair Plot Visualization
+![](figures/pairplot.png)
 
-<img src=‘figures/pairplot.png’/>
+### Pearson Correlation Coeficient Matrix
+![](figures/coef_all.png)
 
-## - Pearson Correlation Coeficient Matrix
-
-<img src=‘figures/coef_all.png’/>
-
-## - Variance Inflation Factors (VIFs)
+### Variance Inflation Factors (VIFs)
 
 ????? need a vif pic
 
-<img src=‘figures/coef_reduced.png’/>
+![](figures/coef_reduced.png)
 
 
 ## Logistic Regression
-
-<img src=‘figures/ROC.png’/>
+![](figures/ROC.png)
 
 ????? need an accuracy report
 
 ## Confusion Matrix
-
-<img src=‘figures/confusion_matrics.png’/>
+![](figures/confusion_matrics.png)
 
 ## Principle Component Analysis
+![](figures/PCA.png)
 
-<img src=‘figures/PCA.png’/>
+![](figures/PCA_heatmap.png)
 
-<img src=‘figures/PCA_heatmap.png’/>
 
 ## K-Means Clustering
-
-<img src=‘figures/KMeans.png’/>
+![](figures/KMeans.png)
 
 
 ## Model Comparison
 
-### Let's compare the accuracy score of Logistic Regression model and the K-Means Clustering model used above.
+Let's compare the accuracy score of Logistic Regression model and the K-Means Clustering model used above.
 
-### From the above table, we can see that has the highest accuracy score.
-
-### Among these two, we choose Support Vector Machines classifier as it has the ability to limit overfitting as compared to Decision Tree classifier.
+From the above table, we can see that has the highest precision score.
