@@ -18,7 +18,7 @@ Understanding customer purchase behavior is highly useful for strategic planning
 
 
 # Data Preprocessing
-##1. Data Cleaning
+## 1. Data Cleaning
 
 Here is how the missing data summary look like before cleaning.
 
@@ -32,60 +32,60 @@ Below graph shows how clean our data is.
 
 ![](figures/after_data_clean.png)
 
-##2. Data Transformation
-###1) Categorize below features:
+## 2. Data Transformation
+### 1) Categorize below features:
 Browser, Operating System, Source
-###2) Encode categorical below features:
+### 2) Encode categorical below features:
 Channel Grouping, Device Category, Continent, Browser Grouping, Operating System Grouping, Source Grouping
 
 
 # Exploratory Data Analysis
 EDA is statisticians way of story telling where you explore data, find patterns and tells insights.
 
-##- Channel Distribution
+## - Channel Distribution
 ![](figures/channel_dist.png)
 
-##- Browser Distribution
+## - Browser Distribution
 ![](figures/browser_dist.png)
 
-##- Device Distribution
+## - Device Distribution
 ![](figures/device_dist.png)
 
-##- Operating System Distribution
+## - Operating System Distribution
 ![](figures/operatingSystem_dist.png)
 
-##- Continent Distribution
+## - Continent Distribution
 ![](figures/continent_dist.png)
 
-##- Medium Distribution
+## - Medium Distribution
 ![](figures/medium_dist.png)
 
 
 # Machine Learning Modeling
 
-##Step 1. Feature Selection
+## Step 1. Feature Selection
 
-###1) Pair Plot Visualization
+### 1) Pair Plot Visualization
 ![](figures/pairplot.png)
 
-###2) Pearson Correlation Coeficient Matrix
+### 2) Pearson Correlation Coeficient Matrix
 ![](figures/coef_all.png)
 
-###3) Variance Inflation Factors (VIFs)
+### 3) Variance Inflation Factors (VIFs)
 
 ????? need a vif pic
 
 ![](figures/coef_reduced.png)
 
 
-##Step 2. Logistic Regression
+## Step 2. Logistic Regression
 
 ### 1) Unbalanced Model
 ![](figures/ROC.png) ![](figures/confusion_matrics.png)
 
 ### 2) Balanced Model
 
-##Step 3. Principle Component Analysis
+## Step 3. Principle Component Analysis
 ### 1) Unbalanced Model
 ![](figures/PCA.png)
 
@@ -93,11 +93,11 @@ EDA is statisticians way of story telling where you explore data, find patterns 
 
 ### 2) Balanced Model
 
-##Step 4. K-Means Clustering
+## Step 4. K-Means Clustering
 ![](figures/KMeans.png)
 
 
-##Step 5. Model Comparison
+## Step 5. Model Comparison
 
 Let's compare the accuracy score of Logistic Regression model and the K-Means Clustering model used above.
 
