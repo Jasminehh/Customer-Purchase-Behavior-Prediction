@@ -2,11 +2,14 @@
 
 ## Jasmine He
 
+![](figures_new/logo.png)
+
 # Introduction
 Understanding customer purchase behavior is highly useful for the strategic planning and decision-making processes that lead to a company’s future success and growth.
 
 Google published their online store data on Kaggle to collect ideas on how to use their data to best predict customer behavior. This project is to use machine learning models to determine if each customer visiting Google merchandise store is likely to make a purchase or not.  
 
+![](figures_new/buy_or_not.png)
 
 # Strategy
 ### 1. Data Preprocessing
