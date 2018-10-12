@@ -10,21 +10,21 @@ Understanding customer purchase behavior is highly useful for strategic planning
 ### - Total of 0.9 million visits from 2016-08 to 2017-07
 ### - Total of 50 different features
 ### - Main feature categories:
-1) Device feature: browser, operating system, isMobile, etc.
-2) Source feature: channel, medium, referral path, etc
-3) Geography feature: city, country, region, continent, etc
-4) Behavior feature: visits, hits, pageviews, bounces, visitStartTime etc
-5) Transaction feature: transaction revenue
+#### 1) Device feature: browser, operating system, isMobile, etc.
+#### 2) Source feature: channel, medium, referral path, etc
+#### 3) Geography feature: city, country, region, continent, etc
+#### 4) Behavior feature: visits, hits, pageviews, bounces, visitStartTime etc
+#### 5) Transaction feature: transaction revenue
 
 
 # Data Preprocessing
-## 1. Data Cleaning
+## Step 1. Data Cleaning
 
 Here is how the missing data summary look like before cleaning.
 
 ![](figures/before_data_clean.png)
 
-Around 10% of the data is missing. After looking at the features with missing data more closely, most of them use na to represent 0. The best simplified method is to replace the missing values for those features (bounces, transaction revenue, isTureDirect) with 0.
+Around 10% of the data is missing. After looking at the features with missing data more closely, most of them use NAN to represent 0. The best simplified method is to replace the missing values for those features (bounces, transaction revenue, isTureDirect) with 0.
 
 Notice there are some unnecessary features in our data set, it is optimal to drop those unnecessary features and keep only the useful ones for our experiment.
 
@@ -32,7 +32,7 @@ Below graph shows how clean our data is.
 
 ![](figures/after_data_clean.png)
 
-## 2. Data Transformation
+## Step 2. Data Transformation
 ### 1) Categorize below features:
 Browser, Operating System, Source
 ### 2) Encode categorical below features:
@@ -42,63 +42,77 @@ Channel Grouping, Device Category, Continent, Browser Grouping, Operating System
 # Exploratory Data Analysis
 EDA is statisticians way of story telling where you explore data, find patterns and tells insights.
 
-## - Channel Distribution
+## 1. Channel Distribution
 ![](figures/channel_dist.png)
 
-## - Browser Distribution
+## 2. Browser Distribution
 ![](figures/browser_dist.png)
 
-## - Device Distribution
+## 3. Device Distribution
 ![](figures/device_dist.png)
 
-## - Operating System Distribution
+## 4. Operating System Distribution
 ![](figures/operatingSystem_dist.png)
 
-## - Continent Distribution
+## 5. Continent Distribution
 ![](figures/continent_dist.png)
 
-## - Medium Distribution
+## 6. Medium Distribution
 ![](figures/medium_dist.png)
 
 
 # Machine Learning Modeling
 
-## Step 1. Feature Selection
+## 1. Feature Selection
 
-### 1) Pair Plot Visualization
+### 1). Pair Plot Visualization
 ![](figures/pairplot.png)
 
-### 2) Pearson Correlation Coeficient Matrix
+### 2). Pearson Correlation Coefficient Matrix - Original Features
 ![](figures/coef_all.png)
 
-### 3) Variance Inflation Factors (VIFs)
+### 3). Variance Inflation Factors (VIFs)
 
-????? need a vif pic
+By running the ReduceVIF function, we can drop the features with vif more than 5 automatically. Below is the screenshot of the output.
+![](figures_new/vif.png)
 
+
+### 4). Pearson Correlation Coefficient Matrix - Reduced Features
 ![](figures/coef_reduced.png)
 
 
-## Step 2. Logistic Regression
+## 2. Logistic Regression
 
-### 1) Unbalanced Model
-![](figures/ROC.png) ![](figures/confusion_matrics.png)
+### Option 1. Unbalanced Model
+![](figures_new/logmodel_unbalanced.png)
 
-### 2) Balanced Model
+### Option 2. Balanced Model
+![](figures_new/logmodel_balanced.png)
 
-## Step 3. Principle Component Analysis
-### 1) Unbalanced Model
+## 3. Principle Component Analysis
+### Option 1. Unbalanced Model
 ![](figures/PCA.png)
 
 ![](figures/PCA_heatmap.png)
 
-### 2) Balanced Model
+### Option 2. Balanced Model
+![](figures_new/pca_balanced.png)
 
-## Step 4. K-Means Clustering
+![](figures_new/pca_heatmap_balanced.png)
+
+
+## 4. K-Means Clustering
+### Option 1. Unbalanced Model
 ![](figures/KMeans.png)
 
+### Option 2. Balanced Model
+![](figures_new/KMeans_balanced.png)
 
-## Step 5. Model Comparison
+# Conclusion
+![](figures_new/report.png)
 
 Let's compare the accuracy score of Logistic Regression model and the K-Means Clustering model used above.
 
-From the above table, we can see that has the highest precision score.
+From the above table, we can see that Logistic Regression on the unbalanced model has the highest precision score (0.94).
+
+# Discussion
