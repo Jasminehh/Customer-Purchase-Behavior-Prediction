@@ -45,7 +45,6 @@ Channel Grouping, Device Category, Continent, Browser Grouping, Operating System
 EDA is the statistical way of storytelling with data.  We will explore data, find patterns, and observe insights using EDA.
 
 
-
 ## 1. Key Metrics by Channel Type
 ![](figures/channel_dist.png)
 We can see that display advertising has the highest expected revenue per visitor.  It's also one of the most difficult methods, having a very low number of total visits.  Conversely, social media brings a large number of visits, but a very low conversion rate (average revenue).
@@ -54,14 +53,17 @@ We can immediately see that, for a large total revenue, we need a balance of hig
 
 ## 2. Key Metrics by Browser
 ![](figures/browser_dist.png)
+
 We can see from the Average Revenue graph that there's the highest expected revenue from Chrome and Firefox users.  Although Firefox slightly edges out Chrome in Average Revenue per visitor, there are far more users using Chrome, making Chrome users the highest revenue-generating customer group in total.
 
 ## 3. Key Metrics by Device
 ![](figures/device_dist.png)
+
 It is clear that majority of store visits are done on a desktop, and the desktop also has the highest conversion rate.  Clearly, desktop visits yield the vast majority of total revenue.
 
 ## 4. Key Metrics by Operating System
 ![](figures/operatingSystem_dist.png)
+
 Operating system data paints a more detailed picture of revenue-by-device.  We already know that the desktop yields the vast majority of revenue, which eliminates iOS and Android as major revenue sources.
 
 Chrome OS has a very high conversion rate, but a very low usage rate, which makes sense as Chromebooks are a niche Google product.
@@ -70,16 +72,18 @@ Macintosh users have a fairly high conversion rate for using a non-niche operati
 
 ## 5. Key Metrics by Continent
 ![](figures/continent_dist.png)
+
 The key metric here is the dominance of American (including South and Central America) conversion rate and visitation numbers.  We can speculate most of these numbers come from the United States, which was confirmed by a separate data field (City).
 
 ## 6. Key Metrics by Medium
 ![](figures/medium_dist.png)
+
 Similar to the channel analysis, most revenue comes from referrals and organic search.  Direct advertising is bucketed under (none) because these graphs only describe how customers are advertised through online marketing methods.
 
 
 # Machine Learning Modeling
 
-## 1. Feature Selection
+## 1. Multicollinearity Detection
 
 ### 1)  Pair Plot Visualization
 ![](figures/pairplot.png)
@@ -110,32 +114,55 @@ Th normalized true positive is 0.999, but the normalized true negative is only 0
 The balanced model works very well, since both the normalized true positive and the normalized true negative are very high (0.941, 0.9397 respectively).
 
 ## 3. Principle Component Analysis
+
+PCA is a transformation of your data and attempts to find out what features explain the most variance in your data.
+
+As we've noticed before it is difficult to visualize high dimensional data, we can use PCA to find the first two principal components, and visualize the data in this new, two-dimensional space, with a single scatter-plot.
+
 ### Option 1. Unbalanced Model
 ![](figures/PCA.png)
 
-![](figures/PCA_heatmap.png)
+From the above plot, we can see that we've reduced 7 dimensions to just 2. Clearly by using these two components we can easily separate these into two classes (non-purchase and purchase). Let's take a look at the components.
 
 ![](figures_new/pca_coef_unbalanced.png)
 
+The components correspond to combinations of the original features. For above table, each row represents a principal component, and each column relates back to the original features. we can visualize this relationship with a heatmap:
+
+![](figures/PCA_heatmap.png)
+
+The heatmap indicates that feature hits plays an important role in first principle component, and feature visit number is leading second principle component.
+
 ### Option 2. Balanced Model
+
 ![](figures_new/pca_balanced.png)
 
-![](figures_new/pca_heatmap_balanced.png)
+For the balanced model, we can separate these into two classes as well (non-purchase and purchase).
 
 ![](figures_new/pca_coef_balanced.png)
 
+Clearly, feature hits and feature visit number are leading those two principle components.
+
+![](figures_new/pca_heatmap_balanced.png)
+
+
 ## 4. K-Means Clustering
+
+K Means Clustering is an unsupervised learning algorithm that tries to cluster data based on their similarity. Unsupervised learning means that there is no outcome to be predicted, and the algorithm just tries to find patterns in the data. In k means clustering, we have the specify the number of clusters we want the data to be grouped into. The algorithm randomly assigns each observation to a cluster, and finds the centroid of each cluster.
+
 ### Option 1. Unbalanced Model
 ![](figures/KMeans.png)
 
 ### Option 2. Balanced Model
 ![](figures_new/KMeans_balanced.png)
 
-# Conclusion
+# Model Comparison
 ![](figures_new/report.png)
 
 Let's compare the precision score of Logistic Regression model and the K-Means Clustering model used above.
 
-From the above table, we can see that Logistic Regression on the unbalanced model has the highest precision score (0.94).
+From the above classification report, we can see that K-Means clustering on the balanced model has the highest precision score (0.97), but its recall is only 0.32. On the other hand, logistic regression on the balanced model has both high precision and recall. Overall, we decide to choose the logistic regression on the balanced model as our optimal model.
 
 # Discussion
+
+## - Consider include the geographic features tot the model.
+## - Collect more data for the balanced model.
