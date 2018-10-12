@@ -3,15 +3,23 @@
 ## Jasmine He
 
 # Introduction
-Understanding customer purchase behavior is highly useful for strategic planning and decision-making processes that lead to the company’s future success and growth.
+Understanding customer purchase behavior is highly useful for the strategic planning and decision-making processes that lead to a company’s future success and growth.
 
 Google published their online store data on Kaggle to collect ideas on how to use their data to best predict customer behavior. This project is to use machine learning models to determine if each customer visiting Google merchandise store is likely to make a purchase or not.  
 
 
+# Strategy
+### 1. Data Preprocessing
+### 2. Exploratory Data analysis
+### 3. Logistic Regression
+### 4. Principle Component Analysis
+### 5. K-Means Clustering
+
+
 # Data Overview
-### - Total of 0.9 million visits from 2016-08 to 2017-07
-### - Total of 50 different features
-### - Main feature categories:
+### 1. Total of 0.9 million visits from 2016-08 to 2017-07
+### 2. Total of 50 different features
+### 3. Main feature categories:
 ####  1) Device feature: browser, operating system, isMobile, etc.
 ####  2) Source feature: channel, medium, referral path, etc
 ####  3) Geography feature: city, country, region, continent, etc
@@ -30,7 +38,7 @@ Around 10% of the data is missing. After looking at the features with missing da
 
 Notice there are some unnecessary features in our data set, it is optimal to drop those unnecessary features and keep only the useful ones for our model.  
 
-Below graph shows what our data looks like after cleaning unnecessary features and plugging in 0s for NANs.
+The below graph shows what our data looks like after cleaning unnecessary features and plugging in 0s for NANs.
 
 ![](figures/after_data_clean.png)
 
@@ -42,7 +50,7 @@ Channel Grouping, Device Category, Continent, Browser Grouping, Operating System
 
 
 # Exploratory Data Analysis
-EDA is the statistical way of storytelling with data.  We will explore data, find patterns, and observe insights using EDA.
+EDA is a statistical method for telling stories with data. We will explore data, find patterns, and observe insights using EDA.
 
 
 ## 1. Key Metrics by Channel Type
@@ -54,7 +62,7 @@ We can immediately see that, for a large total revenue, we need a balance of hig
 ## 2. Key Metrics by Browser
 ![](figures/browser_dist.png)
 
-We can see from the Average Revenue graph that there's the highest expected revenue from Chrome and Firefox users.  Although Firefox slightly edges out Chrome in Average Revenue per visitor, there are far more users using Chrome, making Chrome users the highest revenue-generating customer group in total.
+We can see from the Average Revenue graph that the highest expected revenue comes from Chrome and Firefox users.  Although Firefox slightly edges out Chrome in Average Revenue per visitor, there are far more users using Chrome, making Chrome users the highest revenue-generating customer group in total.
 
 ## 3. Key Metrics by Device
 ![](figures/device_dist.png)
@@ -73,7 +81,7 @@ Macintosh users have a fairly high conversion rate for using a non-niche operati
 ## 5. Key Metrics by Continent
 ![](figures/continent_dist.png)
 
-The key metric here is the dominance of American (including South and Central America) conversion rate and visitation numbers.  We can speculate most of these numbers come from the United States, which was confirmed by a separate data field (City).
+The key metric here is the dominance of American (including South and Central America) conversion rate and visitation numbers.  We can speculate that most of these numbers come from the United States, which was confirmed by a separate data field (City).
 
 ## 6. Key Metrics by Medium
 ![](figures/medium_dist.png)
@@ -117,7 +125,7 @@ The balanced model works very well, since both the normalized true positive and 
 
 PCA is a transformation of your data and attempts to find out what features explain the most variance in your data.
 
-As we've noticed before it is difficult to visualize high dimensional data, we can use PCA to find the first two principal components, and visualize the data in this new, two-dimensional space, with a single scatter-plot.
+Since it is difficult to visualize high-dimensional data, we can use PCA to find the first two principal components, and visualize the data in this new, two-dimensional space, with a single scatter-plot.
 
 ### Option 1. Unbalanced Model
 ![](figures/PCA.png)
@@ -126,11 +134,11 @@ From the above plot, we can see that we've reduced 7 dimensions to just 2. Clear
 
 ![](figures_new/pca_coef_unbalanced.png)
 
-The components correspond to combinations of the original features. For above table, each row represents a principal component, and each column relates back to the original features. we can visualize this relationship with a heatmap:
+The components correspond to combinations of the original features. For the above table, each row represents a principal component, and each column relates back to the original features. we can visualize this relationship with a heatmap:
 
 ![](figures/PCA_heatmap.png)
 
-The heatmap indicates that feature hits plays an important role in first principle component, and feature visit number is leading second principle component.
+The heatmap indicates that the "hits" feature plays an important role in first principle component, and the "visit number" feature is leading second principle component.
 
 ### Option 2. Balanced Model
 
@@ -140,14 +148,14 @@ For the balanced model, we can separate these into two classes as well (non-purc
 
 ![](figures_new/pca_coef_balanced.png)
 
-Clearly, feature hits and feature visit number are leading those two principle components.
+Clearly, "hits" feature and "visit number" feature are leading those two principle components.
 
 ![](figures_new/pca_heatmap_balanced.png)
 
 
 ## 4. K-Means Clustering
 
-K Means Clustering is an unsupervised learning algorithm that tries to cluster data based on their similarity. Unsupervised learning means that there is no outcome to be predicted, and the algorithm just tries to find patterns in the data. In k means clustering, we have the specify the number of clusters we want the data to be grouped into. The algorithm randomly assigns each observation to a cluster, and finds the centroid of each cluster.
+K Means Clustering is an unsupervised learning algorithm that tries to cluster data based on their similarity. Unsupervised learning means that there is no outcome to be predicted, and the algorithm just tries to find patterns in the data. In k means clustering, we have to specify the number of clusters we want the data to be grouped into. The algorithm randomly assigns each observation to a cluster, and finds the centroid of each cluster.
 
 ### Option 1. Unbalanced Model
 ![](figures/KMeans.png)
@@ -155,14 +163,14 @@ K Means Clustering is an unsupervised learning algorithm that tries to cluster d
 ### Option 2. Balanced Model
 ![](figures_new/KMeans_balanced.png)
 
-# Model Comparison
+# Result
 ![](figures_new/report.png)
 
-Let's compare the precision score of Logistic Regression model and the K-Means Clustering model used above.
+Let's compare the precision score of the Logistic Regression model and the K-Means Clustering model used above.
 
 From the above classification report, we can see that K-Means clustering on the balanced model has the highest precision score (0.97), but its recall is only 0.32. On the other hand, logistic regression on the balanced model has both high precision and recall. Overall, we decide to choose the logistic regression on the balanced model as our optimal model.
 
-# Discussion
+# Future Work
 
-## - Consider include the geographic features tot the model.
-## - Collect more data for the balanced model.
+### 1. Consider including the geographic features in the model.
+### 2. Collect more data for the balanced model to compare the Logistic Regression model and the K-means Clustering model.
