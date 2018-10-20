@@ -1,4 +1,4 @@
-# Google Store Customer Conversion Study
+# Google Store Customer Conversion Prediction
 
 ## Jasmine He
 
@@ -9,7 +9,10 @@ Understanding customer purchase behavior is highly useful for the strategic plan
 
 Google published their online store data on Kaggle to collect ideas on how to use their data to best predict customer behavior. This project is to use machine learning models to determine if each customer visiting Google merchandise store is likely to make a purchase or not.  
 
-![](figures_new/buy_or_not.png)
+# Table of Contents
+=================
+* [Data Overview](#Data Overview)
+  
 
 # Strategy
 ### 1. Data Preprocessing
@@ -17,17 +20,20 @@ Google published their online store data on Kaggle to collect ideas on how to us
 ### 3. Logistic Regression
 ### 4. Principle Component Analysis
 ### 5. K-Means Clustering
+### 6. Decision Tree Classifier
+### 7. Random Forest Classifier
+### 8. Support Vector Classifier
 
 
 # Data Overview
-### 1. Total of 0.9 million visits from 2016-08 to 2017-07
-### 2. Total of 50 different features
-### 3. Main feature categories:
-####  1) Device feature: browser, operating system, isMobile, etc.
-####  2) Source feature: channel, medium, referral path, etc
-####  3) Geography feature: city, country, region, continent, etc
-####  4) Behavior feature: visits, hits, pageviews, bounces, visitStartTime etc
-####  5) Transaction feature: transaction revenue
+- Total of 0.9 million visits from 2016-08 to 2017-07
+- Total of 50 different features
+- Main feature categories:
+ - Device feature: browser, operating system, isMobile, etc.
+ - Source feature: channel, medium, referral path, etc
+ - Geography feature: city, country, region, continent, etc
+ - Behavior feature: visits, hits, pageviews, bounces, visitStartTime etc
+ - Transaction feature: transaction revenue
 
 
 # Data Preprocessing
@@ -105,7 +111,7 @@ Similar to the channel analysis, most revenue comes from referrals and organic s
 ### 3)  Variance Inflation Factors (VIFs)
 
 By running the ReduceVIF function, we can drop the features with VIF >= 5. Below is the screenshot of the output.
-![](figures_new/vif.png)
+![](figures/vif.png)
 
 
 ### 4)  Pearson Correlation Coefficient Matrix - Reduced Features
@@ -115,12 +121,12 @@ By running the ReduceVIF function, we can drop the features with VIF >= 5. Below
 ## 2. Logistic Regression
 
 ### Option 1. Unbalanced Model
-![](figures_new/logmodel_unbalanced.png)
+![](figures/logmodel_unbalanced.png)
 
 Th normalized true positive is 0.999, but the normalized true negative is only 0.048, which is very low. For our prediction model, we aim to have high true negative (purchase/purchase), but this unbalanced model does not work well on it. The main reason is the majority of the visits are non-purchases (about 1% of visits result in a purchase). In order to improve our model, we are going to build a logistic regression model on the balanced model.
 
 ### Option 2. Balanced Model
-![](figures_new/logmodel_balanced.png)
+![](figures/logmodel_balanced.png)
 
 The balanced model works very well, since both the normalized true positive and the normalized true negative are very high (0.941, 0.9397 respectively).
 
@@ -135,7 +141,7 @@ Since it is difficult to visualize high-dimensional data, we can use PCA to find
 
 From the above plot, we can see that we've reduced 7 dimensions to just 2. Clearly by using these two components we can easily separate these into two classes (non-purchase and purchase). Let's take a look at the components.
 
-![](figures_new/pca_coef_unbalanced.png)
+![](figures/pca_coef_unbalanced.png)
 
 The components correspond to combinations of the original features. For the above table, each row represents a principal component, and each column relates back to the original features. we can visualize this relationship with a heatmap:
 
@@ -145,15 +151,15 @@ The heatmap indicates that the "hits" feature plays an important role in first p
 
 ### Option 2. Balanced Model
 
-![](figures_new/pca_balanced.png)
+![](figures/pca_balanced.png)
 
 For the balanced model, we can separate these into two classes as well (non-purchase and purchase).
 
-![](figures_new/pca_coef_balanced.png)
+![](figures/pca_coef_balanced.png)
 
 Clearly, "hits" feature and "visit number" feature are leading those two principle components.
 
-![](figures_new/pca_heatmap_balanced.png)
+![](figures/pca_heatmap_balanced.png)
 
 
 ## 4. K-Means Clustering
@@ -164,16 +170,22 @@ K Means Clustering is an unsupervised learning algorithm that tries to cluster d
 ![](figures/KMeans.png)
 
 ### Option 2. Balanced Model
-![](figures_new/KMeans_balanced.png)
+![](figures/KMeans_balanced.png)
 
-# Result
-![](figures_new/report.png)
+# Model Comparison
+![](figures/report1.png)
 
 Let's compare the precision score of the Logistic Regression model and the K-Means Clustering model used above.
 
-From the above classification report, we can see that K-Means clustering on the balanced model has the highest precision score (0.97), but its recall is only 0.32. On the other hand, logistic regression on the balanced model has both high precision and recall. Overall, we decide to choose the logistic regression on the balanced model as our optimal model.
+From the above classification report, we can see that K-Means clustering on the balanced model has the highest precision score (0.97), but its recall is only 0.32. On the other hand, logistic regression on the balanced model has both high precision and recall. Overall, the logistic regression on the balanced model performs the best so far.
+
+# Model Improvement
+It is apparently that the balanced model could capture the differences between purchase and non-purchase better than the unbalanced model. Therefore, it is worthy to apply other classification methods (Decision Tree Classifier, Random Forest Classifier and Support Vector Classifier) on the balanced model.
+
+![](figures/report2.png)
+
+According to the above classification report, Random Forest Classifier slightly improved the precision and recall on the purchase target (0.95, 0.98 respectively).
 
 # Future Work
-
-### 1. Consider including the geographic features in the model.
-### 2. Collect more data for the balanced model to compare the Logistic Regression model and the K-means Clustering model.
+- Consider including the geographic features in the model.
+- Collect more data for the balanced model to compare the Logistic Regression model and the K-means Clustering model.
