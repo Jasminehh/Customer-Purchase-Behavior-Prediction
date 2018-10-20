@@ -9,11 +9,6 @@ Understanding customer purchase behavior is highly useful for the strategic plan
 
 Google published their online store data on Kaggle to collect ideas on how to use their data to best predict customer behavior. This project is to use machine learning models to determine if each customer visiting Google merchandise store is likely to make a purchase or not.  
 
-# Table of Contents
-=================
-* [Data Overview](#Data Overview)
-  
-
 # Strategy
 ### 1. Data Preprocessing
 ### 2. Exploratory Data analysis
@@ -26,9 +21,9 @@ Google published their online store data on Kaggle to collect ideas on how to us
 
 
 # Data Overview
-- Total of 0.9 million visits from 2016-08 to 2017-07
-- Total of 50 different features
-- Main feature categories:
+#### 1. Total of 0.9 million visits from 2016-08 to 2017-07
+#### 2. Total of 50 different features
+#### 3. Main feature categories:
  - Device feature: browser, operating system, isMobile, etc.
  - Source feature: channel, medium, referral path, etc
  - Geography feature: city, country, region, continent, etc
@@ -189,9 +184,3 @@ According to the above classification report, Random Forest Classifier slightly 
 # Future Work
 - Consider including the geographic features in the model.
 - Collect more data for the balanced model to compare the Logistic Regression model and the K-means Clustering model.
-# Google-Store-Customer-Conversion-Study
-# Google-Store-Customer-Conversion-Study
-# Google-Store-Customer-Conversion-Prediction
-# Google-Store-Customer-Conversion-Prediction
-# Google-Store-Customer-Conversion-Prediction
-# Customer-Purchase-Behavior-Prediction
