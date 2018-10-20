@@ -191,3 +191,4 @@ According to the above classification report, Random Forest Classifier slightly 
 - Collect more data for the balanced model to compare the Logistic Regression model and the K-means Clustering model.
 # Google-Store-Customer-Conversion-Study
 # Google-Store-Customer-Conversion-Study
+# Google-Store-Customer-Conversion-Prediction
