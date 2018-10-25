@@ -2,7 +2,7 @@
 
 ## Jasmine He
 
-![](figures_new/logo.png)
+![](figures/logo.png)
 
 # Introduction
 Understanding customer purchase behavior is highly useful for the strategic planning and decision-making processes that lead to a company’s future success and growth.
