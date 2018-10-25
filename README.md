@@ -132,7 +132,7 @@ PCA is a transformation of your data and attempts to find out what features expl
 Since it is difficult to visualize high-dimensional data, we can use PCA to find the first two principal components, and visualize the data in this new, two-dimensional space, with a single scatter-plot.
 
 ### Option 1. Unbalanced Model
-![](figures/PCA.png)
+![](figures/pca_unbalanced.png)
 
 From the above plot, we can see that we've reduced 7 dimensions to just 2. Clearly by using these two components we can easily separate these into two classes (non-purchase and purchase). Let's take a look at the components.
 
