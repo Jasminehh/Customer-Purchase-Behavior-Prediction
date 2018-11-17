@@ -10,14 +10,14 @@ Understanding customer purchase behavior is highly useful for the strategic plan
 Google published their online store data on Kaggle to collect ideas on how to use their data to best predict customer behavior. This project is to use machine learning models to determine if each customer visiting Google merchandise store is likely to make a purchase or not.  
 
 # Strategy
-### 1. Data Preprocessing
-### 2. Exploratory Data analysis
-### 3. Logistic Regression
-### 4. Principle Component Analysis
-### 5. K-Means Clustering
-### 6. Decision Tree Classifier
-### 7. Random Forest Classifier
-### 8. Support Vector Classifier
+- Data Preprocessing
+- Exploratory Data analysis
+- Logistic Regression
+- Principle Component Analysis
+- K-Means Clustering
+- Decision Tree Classifier
+- Random Forest Classifier
+- Support Vector Classifier
 
 
 # Data Overview
